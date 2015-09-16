@@ -15,15 +15,17 @@
 			scope: {
 				'position':'@',
 				'contentToBind': '=',
-				'consentFunction': '&consentFunction'
-			}
+				'consentCookieName':'@',
+				'expiration': '='
+			},
+			controller: cookieController
 		};
 		return directive;
 
 		function link(scope, element, attrs) {
+
 			var e = document.querySelector('.n-cookie-consent');
-			console.log(e);
-			scope.consentHandler = scope.consentFunction();
+
 			switch (scope.position) {
 				case 'top':
 					e.style.top = 0;
@@ -32,6 +34,14 @@
 					e.style.bottom = 0;
 					break;
 			}
+		}
+		function cookieController($scope, $cookies) {
+			console.log($scope);
+
+			$scope.consentHandler = function() {
+				console.log('save stuff now');
+			}
+
 		}
 
 	}

@@ -45,14 +45,19 @@
 			<li>If you want to go all the way, make a Github Pages branch, this will give your module a little home on the web where you can host your demos</li>
 		</ul>
 
-		<n-cookie-consent ng-if="!consentCookie" position="top" content-to-bind="myCtrl.stuff" consent-function="myCtrl.myFunction()"></n-cookie-consent>
+		<n-cookie-consent
+                ng-if="!consentCookie"
+                position="top"
+                content-to-bind="myCtrl.stuff"
+                consent-cookie-name="{{myCtrl.name}}"
+                expiration="myCtrl.expire"></n-cookie-consent>
 
 		<!-- bower:js -->
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-scenario/angular-scenario.js"></script>
 		<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 		<script src="bower_components/angular-mocks/angular-mocks.js"></script>
-		<script src="bower_components/angular-scenario/angular-scenario.js"></script>
 		<!-- endbower -->
 
 		<!--<script src="dist/nCookieConsent.js"></script>-->
@@ -65,16 +70,9 @@
             function myController($scope) {
                 this.consentCookie = false;
                 this.stuff = '<p id="cookietest" class="cookietest">you like cookie?</p>';
-                this.myFunction = doCookieStuff;
-                var count = 0;
-                function doCookieStuff(){
-                    if(count===0){
-                        count++;
-                    } else {
-                        alert('now lets make a cookie');
-                        $scope.consentCookie = true;
-                    }
-                }
+                this.expire = new Date('12-12-2020');
+                this.name = 'consent';
+                console.log(this.expire);
             }
 		</script>
 	</body>

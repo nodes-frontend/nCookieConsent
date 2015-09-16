@@ -29,22 +29,33 @@
 			scope: {
 				'position':'@',
 				'contentToBind': '=',
-				'consentFunction': '&consentFunction'
-			}
+				'consentCookieName':'@',
+				'expiration': '='
+			},
+			controller: cookieController
 		};
 		return directive;
 
-		function link(scope, element) {
-			console.log(scope);
-			scope.consentHandler = scope.consentFunction();
+		function link(scope, element, attrs) {
+
+			var e = document.querySelector('.n-cookie-consent');
+
 			switch (scope.position) {
 				case 'top':
-					scope.cookieStyle = {'top':0};
+					e.style.top = 0;
 					break;
 				case 'bottom':
-					scope.cookieStyle = {'bottom':0};
+					e.style.bottom = 0;
 					break;
 			}
+		}
+		function cookieController($scope, $cookies) {
+			console.log($scope);
+
+			$scope.consentHandler = function() {
+				console.log('save stuff now');
+			}
+
 		}
 
 	}
@@ -56,9 +67,9 @@ angular.module('nCookieConsent').run(['$templateCache', function($templateCache)
   'use strict';
 
   $templateCache.put('nCookieConsent.template.html',
-    "<div class=\"n-cookie-consent\" ng-style=\"cookieStyle\">\n" +
+    "<div class=\"n-cookie-consent\">\n" +
     "\t<div ng-bind-html=\"contentToBind\"></div>\n" +
-    "\t<button ng-click=\"consentFunction()\">Ok!</button>\n" +
+    "\t<button class=\"n-cookie-consent__consentbtn\" ng-click=\"consentHandler()\">Ok!</button>\n" +
     "</div>"
   );
 
