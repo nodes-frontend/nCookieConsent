@@ -36,10 +36,9 @@
 			}
 		}
 		function cookieController($scope, $cookies) {
-			console.log($scope);
 
 			$scope.consentHandler = function() {
-				console.log('save stuff now');
+				$cookies.put($scope.consentCookieName, true, {expires: $scope.expiration});
 			}
 
 		}
