@@ -21,7 +21,7 @@
 
 		</style>
 	</head>
-	<body ng-app="demoApp" ng-controller="myCtrl">
+	<body ng-app="demoApp" ng-controller="myController as myCtrl">
 
 		<h1>Nodes Module Starter Kit bids you welcome!</h1>
 		<hr/>
@@ -45,7 +45,7 @@
 			<li>If you want to go all the way, make a Github Pages branch, this will give your module a little home on the web where you can host your demos</li>
 		</ul>
 
-		<n-cookie-consent ng-if="!consentCookie" position="top" content-to-bind="stuff" consent-function="myFunction()"></n-cookie-consent>
+		<n-cookie-consent ng-if="!consentCookie" position="top" content-to-bind="myCtrl.stuff" consent-function="myCtrl.myFunction()"></n-cookie-consent>
 
 		<!-- bower:js -->
 		<script src="bower_components/angular/angular.js"></script>
@@ -61,20 +61,21 @@
 
 		<script>
 			var app = angular.module('demoApp', ['ngCookies', 'nCookieConsent', 'ngSanitize']);
-			app.controller('myCtrl', function($scope){
-				$scope.consentCookie = false;
-				$scope.stuff = '<p id="cookietest" class="cookietest">you like cookie?</p>';
-				$scope.myFunction = doCookieStuff;
-				var count = 0;
-				function doCookieStuff(){
-					if(count===0){
-						count++;
-					} else {
-						alert('now lets make a cookie');
-						$scope.consentCookie = true;
-					}
-				}
-			});
+			app.controller('myController', myController);
+            function myController($scope) {
+                this.consentCookie = false;
+                this.stuff = '<p id="cookietest" class="cookietest">you like cookie?</p>';
+                this.myFunction = doCookieStuff;
+                var count = 0;
+                function doCookieStuff(){
+                    if(count===0){
+                        count++;
+                    } else {
+                        alert('now lets make a cookie');
+                        $scope.consentCookie = true;
+                    }
+                }
+            }
 		</script>
 	</body>
 </html>
