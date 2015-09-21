@@ -1,6 +1,6 @@
 /**
  * 
- * @version v1.0.0 - 2015-09-16
+ * @version v1.0.0 - 2015-09-21
  * @link 
  * @author krma
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -38,7 +38,7 @@
 
 		function link(scope, element, attrs) {
 
-			var e = document.querySelector('.n-cookie-consent');
+			var e = document.querySelector('#n-cookie-consent');
 
 			switch (scope.position) {
 				case 'top':
@@ -50,9 +50,13 @@
 			}
 		}
 		function cookieController($scope, $cookies) {
+			$scope.consent = false;
 
 			$scope.consentHandler = function() {
 				$cookies.put($scope.consentCookieName, true, {expires: $scope.expiration});
+				if($cookies.get([$scope.consentCookieName])) {
+					$scope.consent = true;
+				}
 			}
 
 		}
@@ -66,7 +70,7 @@ angular.module('nCookieConsent').run(['$templateCache', function($templateCache)
   'use strict';
 
   $templateCache.put('nCookieConsent.template.html',
-    "<div class=\"n-cookie-consent\">\n" +
+    "<div ng-hide=\"consent\" id=\"n-cookie-consent\">\n" +
     "\t<div ng-bind-html=\"contentToBind\"></div>\n" +
     "\t<button class=\"n-cookie-consent__consentbtn\" ng-click=\"consentHandler()\">Ok!</button>\n" +
     "</div>"
