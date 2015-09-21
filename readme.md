@@ -9,7 +9,7 @@ Example:
 
 See more in `index.html`
 
-* Styling: just override the `.n-cookie-consent` class
+* Styling: just override the `n-cookie-consent`
 * Content: pass any html in the `contentToBind` attribute
 * Postion: specify `top` or `bottom` in the `position` attribute
 
