@@ -24,7 +24,7 @@
 
 		function link(scope, element, attrs) {
 
-			var e = document.querySelector('.n-cookie-consent');
+			var e = document.querySelector('#n-cookie-consent');
 
 			switch (scope.position) {
 				case 'top':
@@ -36,9 +36,13 @@
 			}
 		}
 		function cookieController($scope, $cookies) {
+			$scope.consent = false;
 
 			$scope.consentHandler = function() {
 				$cookies.put($scope.consentCookieName, true, {expires: $scope.expiration});
+				if($cookies.get([$scope.consentCookieName])) {
+					$scope.consent = true;
+				}
 			}
 
 		}

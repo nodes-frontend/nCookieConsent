@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 		<style>
-			.n-cookie-consent {
+			#n-cookie-consent {
 				z-index: 1000;
 				position: fixed;
 				padding: 20px;
@@ -46,19 +46,18 @@
 		</ul>
 
 		<n-cookie-consent
-                ng-if="!consentCookie"
                 position="top"
                 content-to-bind="myCtrl.stuff"
                 consent-cookie-name="{{myCtrl.name}}"
                 expiration="myCtrl.expire"></n-cookie-consent>
 
-		<!-- bower:js -->
-		<script src="bower_components/angular/angular.js"></script>
-		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-		<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-		<script src="bower_components/angular-mocks/angular-mocks.js"></script>
-		<script src="bower_components/angular-scenario/angular-scenario.js"></script>
-		<!-- endbower -->
+        <!-- bower:js -->
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="bower_components/angular-scenario/angular-scenario.js"></script>
+        <!-- endbower -->
 
 		<!--<script src="dist/nCookieConsent.js"></script>-->
 		<script src="src/nCookieConsent.module.js"></script>
@@ -68,7 +67,6 @@
 			var app = angular.module('demoApp', ['ngCookies', 'nCookieConsent', 'ngSanitize']);
 			app.controller('myController', myController);
             function myController($scope) {
-                this.consentCookie = false;
                 this.stuff = '<p id="cookietest" class="cookietest">you like cookie?</p>';
                 this.expire = new Date('12-12-2020');
                 this.name = 'consent';
