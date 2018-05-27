@@ -1,4 +1,4 @@
-# nCookieConsent directive
+# ⛔️ [DEPRECATED] nCookieConsent directive
 
 Install: `bower install nCookieConsent`
 
