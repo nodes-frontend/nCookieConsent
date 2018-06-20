@@ -1,4 +1,5 @@
-# ⛔️ [DEPRECATED] nCookieConsent directive
+# nCookieConsent directive
+_Not maintained by Nodes anymore_
 
 Install: `bower install nCookieConsent`
 
